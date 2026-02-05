@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Business Consulting - Empower Your Success{% endblock %}</title>
+    <meta name="description"
+        content="Innovative business solutions for your growth. Strategy, digital marketing, and business consulting services.">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    {% include 'includes/navbar.html' %}
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        {% include 'includes/footer.html' %}
+    </footer>
+
+    <!-- Hidden Google Translate Widget -->
+    <div id="google_translate_element" style="display:none"></div>
+
+    <script type="text/javascript">
+        // Inject Auth Status for JS
+        window.isUserAuthenticated = {{ user.is_authenticated | lower }};
+        window.signupUrl = "{% url 'signup' %}";
+
+        // Standard Google Translate Init from Reference
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,te',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+
+        // Bridge function to connect custom navbar buttons to Google Translate
+        function changeLanguage(langCode) {
+            // 1. Set the cookie which Google Translate uses to remember language
+            // For English, we want to clear the translation (reset to original)
+            if (langCode === 'en') {
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + location.hostname;
+                // Also handle the legacy/alternate format
+                document.cookie = "googtrans=/en/en; path=/";
+            } else {
+                document.cookie = "googtrans=/en/" + langCode + "; path=/";
+                document.cookie = "googtrans=/en/" + langCode + "; path=/; domain=" + location.hostname;
+            }
+
+            // 2. Save to local storage for our UI consistency
+            localStorage.setItem('preferredLang', langCode);
+
+            // 3. Reload page to ensure the whole website changes instantly (most reliable)
+            location.reload();
+        }
+
+        // Maintain UI state on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            const savedLang = localStorage.getItem('preferredLang') || 'en';
+            const settingsToggleBtn = document.getElementById('settings-toggle-btn');
+            const settingsSelector = document.getElementById('settings-selector');
+            const mobileToggle = document.getElementById('mobile-toggle');
+            const navContent = document.getElementById('nav-content');
+
+            // Handle Language selection state highlighting
+            const langEn = document.getElementById('lang-en');
+            const langTe = document.getElementById('lang-te');
+            if (savedLang === 'te') {
+                if (langTe) langTe.classList.add('active');
+            } else {
+                if (langEn) langEn.classList.add('active');
+            }
+
+            // Click Handler for the Unified Dropdown Toggle
+            if (settingsToggleBtn && settingsSelector) {
+                settingsToggleBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    settingsSelector.classList.toggle('active');
+                });
+            }
+
+            // Mobile Menu Toggle
+            if (mobileToggle && navContent) {
+                mobileToggle.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    navContent.classList.toggle('active');
+                    // Change icon when open
+                    const icon = mobileToggle.querySelector('i');
+                    if (navContent.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+
+                // Close mobile menu on clicking any link inside
+                const navLinks = navContent.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        navContent.classList.remove('active');
+                        const icon = mobileToggle.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    });
+                });
+            }
+
+            // Global Click to close both dropdown and mobile menu
+            document.addEventListener('click', function (e) {
+                if (settingsSelector && !settingsSelector.contains(e.target)) {
+                    settingsSelector.classList.remove('active');
+                }
+                if (navContent && !navContent.contains(e.target) && !mobileToggle.contains(e.target)) {
+                    navContent.classList.remove('active');
+                    const icon = mobileToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+
+            // Update cart count if cart is already initialized
+            if (typeof updateCartCount === 'function') {
+                updateCartCount();
+            }
+        });
+    </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="{% static 'js/cart.js' %}"></script>
+
+    {% block scripts %}
+    {% endblock %}
+</body>
+
+</html>
