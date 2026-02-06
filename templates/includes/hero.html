@@ -1,14 +1,43 @@
 {% load static %}
 <section class="hero">
-    <!-- Animated Divine Background -->
+    <!-- Hero Photo Slider -->
+    <div class="hero-slider swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide hero-slide"
+                style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://www.revv.co.in/blogs/wp-content/uploads/2020/07/Thanjavur-Image.jpg');">
+            </div>
+            <div class="swiper-slide hero-slide"
+                style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://www.tusktravel.com.mx/blog/wp-content/uploads/2024/11/South-India-temple.jpg');">
+            </div>
+            <div class="swiper-slide hero-slide"
+                style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.herzindagi.info/image/2023/May/must-know-these-interesting-facts-about-badrinath-temple-in-hindi.jpg');">
+            </div>
+        </div>
+    </div>
+
+    <!-- Animated Divine Background Overlay -->
     <div class="divine-rays-bg">
-        <div class="rays-layer" style="background-color:bisque></div>
         <div class="inner-pulse"></div>
         <div class="divine-particles" id="divine-particles"></div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Swiper Initialization
+            const heroSwiper = new Swiper('.hero-slider', {
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true
+                },
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                loop: true,
+                speed: 2000,
+            });
+
+            // Particle Logic
             const container = document.getElementById('divine-particles');
             const particleCount = 20;
 
@@ -40,7 +69,7 @@
     <!-- Divine Entrance Animation -->
     <div class="divine-entrance">
         <div class="kalash-wrapper">
-            
+
             <div class="coin-rain">
                 <div class="coin"></div>
                 <div class="coin"></div>
@@ -67,7 +96,7 @@
     </div>
 
     <div class="container">
-        <div class="hero-content" style="margin-bottom:150px;">
+        <div class="hero-content">
             <div class="hero-text">
 
                 <h1>Online Pooja<br>Booking Platform</h1>
