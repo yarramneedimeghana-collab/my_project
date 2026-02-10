@@ -26,13 +26,6 @@ function saveCart(cart) {
  * @param {string} image - Image URL
  */
 function addToCart(id, title, price, image) {
-    // Check if user is authenticated
-    if (typeof window.isUserAuthenticated !== 'undefined' && !window.isUserAuthenticated) {
-        alert("Please sign up or log in to book a puja.");
-        window.location.href = window.signupUrl || '/signup/';
-        return;
-    }
-
     let cart = getCart();
 
     // Collect extra details if we are on a detail page
@@ -131,6 +124,19 @@ function renderCartItems() {
 
     cartContainer.innerHTML = html;
     const formattedTotal = '₹' + total.toLocaleString('en-IN');
-    subtotalEl.textContent = formattedTotal;
-    totalEl.textContent = formattedTotal;
+    if (subtotalEl) subtotalEl.textContent = formattedTotal;
+    if (totalEl) totalEl.textContent = formattedTotal;
+
+    // Handle checkout form submission
+    const checkoutForm = document.getElementById('checkout-form');
+    if (checkoutForm) {
+        checkoutForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Payment initiated. This would redirect to Razorpay in a live environment.');
+            // Clear cart after successful checkout (simulated)
+            localStorage.removeItem('poojaCart');
+            updateCartCount();
+            window.location.href = '/'; // Redirect to home
+        });
+    }
 }

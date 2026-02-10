@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<style>
+    .dashboard-container {
+        padding: 120px 20px 60px;
+        background: #fdf5e6;
+        min-height: 100vh;
+    }
+
+    .profile-card {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        overflow: hidden;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    @media (max-width: 850px) {
+        .profile-card {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .profile-sidebar {
+        background: #8b4513;
+        color: #fff;
+        padding: 40px;
+        text-align: center;
+    }
+
+    .profile-img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 5px solid #d4af37;
+        object-fit: cover;
+        margin-bottom: 20px;
+    }
+
+    .profile-details {
+        padding: 40px;
+    }
+
+    .detail-section {
+        margin-bottom: 30px;
+    }
+
+    .detail-section h3 {
+        color: #8b4513;
+        border-bottom: 2px solid #d4af37;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .info-item label {
+        display: block;
+        font-size: 0.85rem;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .info-item span {
+        font-weight: 600;
+        color: #333;
+        font-size: 1.1rem;
+    }
+
+    .badge-purohit {
+        background: #d4af37;
+        color: #000;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+    .action-btns {
+        margin-top: 30px;
+        display: flex;
+        gap: 15px;
+    }
+
+    .btn-dash {
+        padding: 12px 25px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .btn-edit {
+        background: #d4af37;
+        color: #000;
+    }
+
+    .btn-logout {
+        background: #f44336;
+        color: #fff;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="container">
+        <div class="profile-card">
+            <div class="profile-sidebar">
+                <img src="https://static.vecteezy.com/system/resources/previews/021/548/095/original/default-profile-picture-avatar-user-avatar-icon-person-icon-head-icon-profile-picture-icons-default-anonymous-user-male-and-female-avatar-profile-picture-outline-icons-free-vector.jpg"
+                    class="profile-img" alt="Purohit Photo">
+                <div class="badge-purohit">VERIFIED PUROHIT</div>
+                <h2 style="margin-bottom: 10px;">{{ fullname|default:"Vedam Murthy" }}</h2>
+                <p style="opacity: 0.8;">Purohit ID: {{ purohit_id|default:"PR-998877" }}</p>
+
+                <div style="margin-top: 40px; text-align: left;">
+                    <p><i class="fas fa-calendar-check"></i> Total Bookings: 124</p>
+                    <p><i class="fas fa-star" style="color: #ffd700;"></i> Rating: 4.9/5</p>
+                </div>
+            </div>
+
+            <div class="profile-details">
+                <div class="detail-section">
+                    <h3>Personal Information</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>Email Address</label>
+                            <span>{{ email|default:"vedam.murthy@example.com" }}</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Mobile Number</label>
+                            <span>{{ mobile|default:"+91 9988776655" }}</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Experience</label>
+                            <span>{{ experience|default:"15" }} Years</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Languages</label>
+                            <span>{{ language|default:"Telugu, Sanskrit, English" }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Professional Details</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>Specialization</label>
+                            <span>{{ specialization|default:"Vedic Rituals & Astrology" }}</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Base Location</label>
+                            <span>{{ location|default:"Hyderabad, Telangana" }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Offered Services</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+                        <span
+                            style="background: #fdf5e6; border: 1px solid #d4af37; padding: 5px 12px; border-radius: 4px;">Ganapathi
+                            Homam</span>
+                        <span
+                            style="background: #fdf5e6; border: 1px solid #d4af37; padding: 5px 12px; border-radius: 4px;">Satyanarayana
+                            Vratam</span>
+                        <span
+                            style="background: #fdf5e6; border: 1px solid #d4af37; padding: 5px 12px; border-radius: 4px;">Rudrabhishekam</span>
+                    </div>
+                </div>
+
+                <div class="action-btns">
+                    <a href="#" class="btn-dash btn-edit">Edit Profile</a>
+                    <a href="{% url 'home' %}" class="btn-dash btn-logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

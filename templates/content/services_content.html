@@ -1,6 +1,7 @@
 {% load static %}
 <!-- Popular Pooja Services Section -->
-<section class="pooja-services" id="pooja-services">
+<section class="pooja-services" id="pooja-services"
+    style="background-image: url('https://img.freepik.com/premium-photo/hindu-background-copy-space_953680-22422.jpg?w=2000'); overflow-x: hidden;">
     <div class="container">
         <div class="section-header">
             <h2 style="color: #E24028;">Our Pooja Services</h2>
@@ -11,8 +12,8 @@
             <div class="swiper-wrapper">
                 <!-- Service Card 1 -->
                 <div class="swiper-slide">
-                    <div class="pooja-card">
-                        <div class="pooja-image-container">
+                    <div class="pooja-card" style="background-color: #f5b700;">
+                        <div class="pooja-image-container"style="background-color: #f5b700;">
                             <a href="{% url 'service_detail' service_slug='pradosha-kala-abhishekam' %}">
                                 <img src="https://www.india.com/wp-content/uploads/2024/10/Patna-The-Heart-of-Chhath-Puja-Celebrations-1.jpg"
                                     alt="Pradosha Kala Abhishekam" class="pooja-image">
@@ -27,15 +28,17 @@
                                 <div><strong>₹3,000 - ₹10,000</strong><span>Price</span></div>
                             </div>
                         </div>
-                        <div class="pooja-content">
+                        <div class="pooja-content" style="background-color: #f5b700;">
                             <a href="{% url 'service_detail' service_slug='pradosha-kala-abhishekam' %}"
                                 style="text-decoration: none; color: inherit;">
                                 <h3>Pradosha Kala Abhishekam <i class="fas fa-star text-warning"></i></h3>
                             </a>
-                            <a href="{% url 'service_detail' service_slug='pradosha-kala-abhishekam' %}"
-                                class="btn btn-book">
-                                View Details <i class="fas fa-info-circle"></i>
-                            </a>
+                            <div class="card-actions" style="justify-content: center;">
+                                <a href="{% url 'service_detail' service_slug='pradosha-kala-abhishekam' %}"
+                                    class="btn btn-view" style="width: 100%; max-width: 200px;">
+                                    Book Pooja <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -62,9 +65,12 @@
                                 style="text-decoration: none; color: inherit;">
                                 <h3>Ganesh Homa <i class="fas fa-star text-warning"></i></h3>
                             </a>
-                            <a href="{% url 'service_detail' service_slug='ganesh-homa' %}" class="btn btn-book">
-                                View Details <i class="fas fa-info-circle"></i>
-                            </a>
+                            <div class="card-actions" style="justify-content: center;">
+                                <a href="{% url 'service_detail' service_slug='ganesh-homa' %}" class="btn btn-view"
+                                    style="width: 100%; max-width: 200px;">
+                                    Book Pooja <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -91,10 +97,12 @@
                                 style="text-decoration: none; color: inherit;">
                                 <h3>Navagraha Shanti Pooja <i class="fas fa-star text-warning"></i></h3>
                             </a>
-                            <a href="{% url 'service_detail' service_slug='navagraha-shanti-pooja' %}"
-                                class="btn btn-book">
-                                View Details <i class="fas fa-info-circle"></i>
-                            </a>
+                            <div class="card-actions" style="justify-content: center;">
+                                <a href="{% url 'service_detail' service_slug='navagraha-shanti-pooja' %}"
+                                    class="btn btn-view" style="width: 100%; max-width: 200px;">
+                                    Book Pooja <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -122,9 +130,12 @@
                                 style="text-decoration: none; color: inherit;">
                                 <h3>Satyanarayan Pooja <i class="fas fa-star text-warning"></i></h3>
                             </a>
-                            <a href="{% url 'service_detail' service_slug='satyanarayan-pooja' %}" class="btn btn-book">
-                                View Details <i class="fas fa-info-circle"></i>
-                            </a>
+                            <div class="card-actions" style="justify-content: center;">
+                                <a href="{% url 'service_detail' service_slug='satyanarayan-pooja' %}"
+                                    class="btn btn-view" style="width: 100%; max-width: 200px;">
+                                    Book Pooja <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -151,9 +162,12 @@
                                 style="text-decoration: none; color: inherit;">
                                 <h3>Maha Lakshmi Pooja <i class="fas fa-star text-warning"></i></h3>
                             </a>
-                            <a href="{% url 'service_detail' service_slug='maha-lakshmi-pooja' %}" class="btn btn-book">
-                                View Details <i class="fas fa-info-circle"></i>
-                            </a>
+                            <div class="card-actions" style="justify-content: center;">
+                                <a href="{% url 'service_detail' service_slug='maha-lakshmi-pooja' %}"
+                                    class="btn btn-view" style="width: 100%; max-width: 200px;">
+                                    Book Pooja <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -180,10 +194,12 @@
                                 style="text-decoration: none; color: inherit;">
                                 <h3>Rudrabhishekam Pooja <i class="fas fa-star text-warning"></i></h3>
                             </a>
-                            <a href="{% url 'service_detail' service_slug='rudrabhishekam-pooja' %}"
-                                class="btn btn-book">
-                                View Details <i class="fas fa-info-circle"></i>
-                            </a>
+                            <div class="card-actions" style="justify-content: center;">
+                                <a href="{% url 'service_detail' service_slug='rudrabhishekam-pooja' %}"
+                                    class="btn btn-view" style="width: 100%; max-width: 200px;">
+                                    Book Pooja <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -233,33 +249,49 @@
     .services-slider .swiper-pagination-bullet-active {
         background: #E24028;
     }
+
+    .btn-view {
+        background-color: #f5b700 !important;
+        color: #b30000 !important;
+        font-weight: 800;
+        text-transform: uppercase;
+        border-radius: 50px;
+        padding: 12px 20px;
+        border: 2px solid transparent;
+        transition: all 0.3s ease;
+        text-align: center;
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
 </style>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        new Swiper('.services-slider', {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2,
+        if (typeof Swiper !== 'undefined') {
+            new Swiper('.services-slider', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
                 },
-                1024: {
-                    slidesPerView: 3,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
                 },
-            },
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-        });
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                    },
+                },
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+            });
+        }
     });
 </script>

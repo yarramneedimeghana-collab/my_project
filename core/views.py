@@ -24,7 +24,8 @@ def service_detail(request, service_slug):
         raise Http404("Service not found")
         
     context = {
-        'service': service
+        'service': service,
+        'service_slug': service_slug
     }
     return render(request, 'pages/service_detail.html', context)
 
@@ -50,7 +51,32 @@ def blogs(request):
 
 def cart(request):
     """Render the cart/checkout page."""
-    if not request.user.is_authenticated:
-        from django.shortcuts import redirect
-        return redirect('signup')
     return render(request, 'pages/cart.html')
+
+def purohit_login(request):
+    """Render the Purohit login page."""
+    if request.method == 'POST':
+        # Simulated login success
+        return render(request, 'pages/purohit_dashboard.html')
+    return render(request, 'pages/purohit_login.html')
+
+def purohit_signup(request):
+    """Render the Purohit signup page."""
+    if request.method == 'POST':
+        # Simulated registration success
+        context = {
+            'fullname': request.POST.get('fullname'),
+            'email': request.POST.get('email'),
+            'mobile': request.POST.get('mobile'),
+            'experience': request.POST.get('experience'),
+            'purohit_id': request.POST.get('purohit_id'),
+            'location': request.POST.get('location'),
+            'specialization': request.POST.get('specialization'),
+            'language': request.POST.get('language'),
+        }
+        return render(request, 'pages/purohit_dashboard.html', context)
+    return render(request, 'pages/purohit_signup.html')
+
+def purohit_dashboard(request):
+    """Render the Purohit dashboard."""
+    return render(request, 'pages/purohit_dashboard.html')

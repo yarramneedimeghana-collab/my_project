@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+<style>
+    .auth-card {
+        border-top: 5px solid #d4af37;
+        /* Gold border for Purohit */
+    }
+
+    .auth-header h2 {
+        color: #8b4513;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="auth-section">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h2>Purohit Sign In</h2>
+            <p>Access your priest dashboard</p>
+        </div>
+
+        <form class="auth-form" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="purohit_id">Purohit ID / Email</label>
+                <input type="text" id="purohit_id" name="purohit_id" placeholder="Enter ID or Email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter password" required>
+            </div>
+
+            <button type="submit" class="btn-auth">Sign In to Portal</button>
+        </form>
+
+        <div class="auth-footer">
+            Want to join as a Purohit? <a href="{% url 'purohit_signup' %}">Register Here</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

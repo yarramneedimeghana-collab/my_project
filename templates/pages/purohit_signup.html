@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+<style>
+    .auth-card {
+        max-width: 800px;
+        border-top: 5px solid #d4af37;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    @media (max-width: 600px) {
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .checkbox-group {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+        margin-top: 10px;
+        background: #fdf5e6;
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .checkbox-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9rem;
+    }
+
+    .full-width {
+        grid-column: 1 / -1;
+    }
+
+    .file-input-wrapper {
+        background: #fff;
+        border: 1px dashed #d4af37;
+        padding: 10px;
+        border-radius: 4px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="auth-section">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h2>Purohit Registration</h2>
+            <p>Join our divine network of experienced priests</p>
+        </div>
+
+        <form class="auth-form" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" name="fullname" placeholder="Full Name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="purohit_id">Desired Purohit ID</label>
+                    <input type="text" id="purohit_id" name="purohit_id" placeholder="e.g. PR-12345" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="experience">Experience (Years)</label>
+                    <input type="number" id="experience" name="experience" placeholder="Years of Experience" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="language">Languages Known</label>
+                    <input type="text" id="language" name="language" placeholder="e.g. Telugu, Sanskrit, Hindi"
+                        required>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="location">Location / Address</label>
+                    <input type="text" id="location" name="location" placeholder="Full Address" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialization">Specialization</label>
+                    <input type="text" id="specialization" name="specialization"
+                        placeholder="e.g. Vedic Rituals, Astrology">
+                </div>
+
+                <div class="form-group">
+                    <label for="photo">Photo</label>
+                    <div class="file-input-wrapper">
+                        <input type="file" id="photo" name="photo" accept="image/*" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="certificate">Vedic Certificate</label>
+                    <div class="file-input-wrapper">
+                        <input type="file" id="certificate" name="certificate" accept=".pdf,image/*" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_proof">ID Proof</label>
+                    <div class="file-input-wrapper">
+                        <input type="file" id="id_proof" name="id_proof" accept=".pdf,image/*" required>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Services Offered</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item"><input type="checkbox" name="services" value="Ganapathi Homam">
+                            Ganapathi Homam</div>
+                        <div class="checkbox-item"><input type="checkbox" name="services" value="Satyanarayana Vratam">
+                            Satyanarayana Vratam</div>
+                        <div class="checkbox-item"><input type="checkbox" name="services" value="Gruhapravesam">
+                            Gruhapravesam</div>
+                        <div class="checkbox-item"><input type="checkbox" name="services" value="Marriage Rituals">
+                            Marriage Rituals</div>
+                        <div class="checkbox-item"><input type="checkbox" name="services" value="Rudrabhishekam">
+                            Rudrabhishekam</div>
+                        <div class="checkbox-item"><input type="checkbox" name="services" value="Sudarsana Homam">
+                            Sudarsana Homam</div>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="password">Create Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create a password" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-auth" style="margin-top: 20px;">Register as Purohit</button>
+        </form>
+
+        <div class="auth-footer">
+            Already registered? <a href="{% url 'purohit_login' %}">Sign In</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

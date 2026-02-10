@@ -1,5 +1,5 @@
 {% load static %}
-<nav class="navbar">
+<nav class="navbar" style="background-color: #b30000;">
     <div class="container">
         <div class="nav-wrapper">
             <div class="logo">
@@ -28,51 +28,30 @@
                     </li>
                 </ul>
             </div>
-            <div class="nav-right" ;>
-                <div class="nav-actions">
-                    <!-- Unified Account & Settings Dropdown -->
-                    <div class="settings-selector" id="settings-selector">
-                        <button type="button" class="btn btn-primary settings-btn" id="settings-toggle-btn">
-                            <i class="fas fa-user-circle"></i>
-                            <span class="settings-text">Account & Settings</span>
-                            <span class="cart-badge-mini cart-count" id="nav-cart-count">0</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="settings-dropdown" style="background-color: #b30000;" id="settings-dropdown">
-                            <div class="dropdown-section">
-                                <h4 class="dropdown-header"><i class="fas fa-user"></i> Account</h4>
-                                <a href="{% url 'login' %}">Sign In</a>
-                                <a href="{% url 'signup' %}">Sign Up</a>
-                            </div>
+           
+<div class="signin-container">
+    <h1 class="page-title">Choose Your Role</h1>
+    <p class="subtitle">Continue to access puja services</p>
 
-                            <div class="divider"></div>
+    <div class="card-wrapper">
 
-                            <div class="dropdown-section">
-                                <h4 class="dropdown-header"><i class="fas fa-shopping-cart"></i> Cart</h4>
-                                <a href="{% url 'cart' %}" class="cart-link">
-                                    View Shopping Cart
-                                    <span class="cart-count-inline cart-count">0</span>
-                                </a>
-                            </div>
+        <!-- Devotee Card -->
+        <div class="signin-card">
+            <i class="fas fa-praying-hands card-icon"></i>
+            <h2>Devotee</h2>
+            <p>Book pujas & spiritual services</p>
 
-                            <div class="divider"></div>
-
-                            <div class="dropdown-section">
-                                <h4 class="dropdown-header"><i class="fas fa-language"></i> Language</h4>
-                                <div class="lang-options">
-                                    <a href="javascript:void(0)" onclick="changeLanguage('en')" class="lang-item"
-                                        id="lang-en">English</a>
-                                    <a href="javascript:void(0)" onclick="changeLanguage('te')" class="lang-item"
-                                        id="lang-te">Telugu</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
+            <a href="{% url 'login' %}" class="btn primary">Sign In</a>
+            <a href="{% url 'signup' %}" class="btn secondary">Sign Up</a>
         </div>
-    </div>
-</nav>
+
+        <!-- Purohit Card -->
+        <div class="signin-card">
+            <i class="fas fa-om card-icon"></i>
+            <h2>Purohit</h2>
+            <p>Offer puja & ritual services</p>
+
+            <a href="{% url 'purohit_login' %}" class="btn primary">Sign In</a>
+            <a href="{% url 'purohit_signup' %}" class="btn secondary">Sign Up</a>
+        </div>
+    </nav>

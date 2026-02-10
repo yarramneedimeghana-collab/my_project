@@ -158,10 +158,18 @@ body {
    =================================== */
 .decorative-border {
     width: 100%;
-    height: 40px;
-    background: var(--primary-red);
+    height: 70px;
+    background: #8B0000;
+    /* Deep Maroon / Royal Red */
     position: relative;
     overflow: hidden;
+    box-shadow:
+        0 6px 15px rgba(0, 0, 0, 0.4),
+        inset 0 0 40px rgba(0, 0, 0, 0.7);
+    border-top: 4px solid #d4af37;
+    border-bottom: 4px solid #d4af37;
+    z-index: 5;
+    margin: 20px 0;
 }
 
 .decorative-border::before {
@@ -169,37 +177,28 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-image:
-        repeating-linear-gradient(90deg,
-            transparent 0px,
-            transparent 15px,
-            var(--accent-yellow) 15px,
-            var(--accent-yellow) 20px,
-            transparent 20px,
-            transparent 35px,
-            var(--accent-yellow) 35px,
-            var(--accent-yellow) 45px),
-        repeating-linear-gradient(0deg,
-            var(--dark-red) 0px,
-            var(--dark-red) 10px,
-            var(--primary-red) 10px,
-            var(--primary-red) 20px);
-    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='70' viewBox='0 0 800 70'%3E%3Cdefs%3E%3ClinearGradient id='goldGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23FFD700'/%3E%3Cstop offset='40%25' style='stop-color:%23FDB913'/%3E%3Cstop offset='60%25' style='stop-color:%23FF8C00'/%3E%3Cstop offset='100%25' style='stop-color:%238B4513'/%3E%3C/linearGradient%3E%3Cfilter id='glow'%3E%3CfeGaussianBlur stdDeviation='1.2' result='blur'/%3E%3CfeMerge%3E%3CfeMergeNode in='blur'/%3E%3CfeMergeNode in='SourceGraphic'/%3E%3C/feMerge%3E%3C/filter%3E%3C/defs%3E%3Cg fill='url(%23goldGrad)' filter='url(%23glow)'%3E%3C!-- Top Beaded Border --%3E%3Crect x='0' y='0' width='800' height='3' /%3E%3C!-- Central Ornate Lotus Design --%3E%3Cpath d='M400 10c-1 0-2 3-2 7 0 5 1 9 2 11 1-2 2-6 2-11 0-4-1-7-2-7zm-8 3c-3 0-6 7-6 13s3 17 6 20 6-12 6-20-3-13-6-13zm16 0c-3 0-6 7-6 13s3 17 6 20 6-12 6-20-3-13-6-13z'/%3E%3C!-- Decorative Swirls --%3E%3Cpath d='M20 35q40-20 80 0t80 0t80 0t80 0t80 0t80 0t80 0t80 0t80 0' fill='none' stroke='url(%23goldGrad)' stroke-width='2' stroke-linecap='round'/%3E%3C!-- Temple Bells --%3E%3Cpath d='M120 20c-5 0-8 5-8 12h16c0-7-3-12-8-12zm-1 15h2l1 10h-4z'/%3E%3Cpath d='M280 20c-5 0-8 5-8 12h16c0-7-3-12-8-12zm-1 15h2l1 10h-4z'/%3E%3Cpath d='M520 20c-5 0-8 5-8 12h16c0-7-3-12-8-12zm-1 15h2l1 10h-4z'/%3E%3Cpath d='M680 20c-5 0-8 5-8 12h16c0-7-3-12-8-12zm-1 15h2l1 10h-4z'/%3E%3C!-- Bottom Beaded Border --%3E%3Crect x='0' y='67' width='800' height='3' /%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-size: auto 100%;
+    animation: decorativeSlide 45s linear infinite;
+}
+
+@keyframes decorativeSlide {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 800px 0;
+    }
 }
 
 .decorative-border::after {
-    content: '◆ ◆ ◆';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--accent-yellow);
-    font-size: 20px;
-    letter-spacing: 30px;
-    text-shadow: 0 0 10px rgba(253, 185, 19, 0.5);
+    display: none;
 }
+
 
 .section-divider {
     height: 30px;
@@ -214,13 +213,35 @@ body {
    Navigation
    =================================== */
 .navbar {
-    background: rgba(196, 30, 58, 1);
+    background-image: linear-gradient(rgba(196, 30, 58, 0.9), rgba(196, 30, 58, 0.9)), url('https://i.pinimg.com/originals/e5/77/d6/e577d624262ba9f527dda20609ce8e53.jpg');
+    background-size: cover;
+    background-position: center;
     backdrop-filter: blur(10px);
-    position: sticky;
+    position: fixed;
     top: 0;
+    width: 100%;
     z-index: 1000;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
     height: 100px;
+    border-bottom: 3px solid var(--accent-yellow);
+    transition: all 0.3s ease;
+}
+
+.navbar .container {
+    height: 100%;
+}
+
+.navbar::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: url('https://png.pngtree.com/png-vector/20240314/ourmid/pngtree-vintage-red-floral-wavy-border-pattern-for-traditional-decor-png-image_11943618.png') repeat-x;
+    background-size: contain;
+    opacity: 1;
+    z-index: 1001;
 }
 
 .nav-wrapper {
@@ -361,23 +382,36 @@ body {
 .settings-btn {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     cursor: pointer;
     white-space: nowrap;
-    padding: 10px 18px;
-    border-radius: 50px;
-    background: rgba(255, 255, 255, 0.15) !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    padding: 8px 35px;
+    border: none !important;
+    background: url('https://png.pngtree.com/png-vector/20240314/ourmid/pngtree-decorative-golden-horizontal-scroll-banner-png-image_11943611.png') no-repeat center !important;
+    background-size: 100% 100% !important;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #4a332d !important;
+    font-weight: 700 !important;
+    min-height: 55px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .settings-btn:hover {
-    background: rgba(255, 255, 255, 0.25) !important;
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.05);
+    filter: brightness(1.1);
 }
 
-.settings-btn i:first-child {
-    font-size: 18px;
+.settings-btn i,
+.settings-btn .cart-badge-mini {
+    position: relative;
+    z-index: 2;
+}
+
+.settings-text {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .cart-badge-mini {
@@ -399,18 +433,21 @@ body {
     opacity: 0;
     pointer-events: none;
     position: absolute;
-    top: calc(100% + 15px);
-    right: 0;
-    background: white;
-    min-width: 240px;
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
-    border-radius: 16px;
-    border: 1px solid rgba(196, 30, 58, 0.1);
-    overflow: hidden;
+    top: calc(100% + 5px);
+    right: -20px;
+    background: url('https://png.pngtree.com/png-vector/20240314/ourmid/pngtree-vintage-vertical-scroll-paper-manuscript-parchment-scroll-png-image_11944516.png') no-repeat center !important;
+    background-size: 100% 100% !important;
+    min-width: 320px;
+    min-height: 450px;
+    padding: 60px 40px;
+    box-shadow: none !important;
+    border: none !important;
     z-index: 10000;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateY(-15px);
-    padding: 15px 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateY(-20px) scale(0.8);
+    transform-origin: top right;
+    display: flex;
+    flex-direction: column;
 }
 
 .settings-selector.active .settings-dropdown {
@@ -425,33 +462,36 @@ body {
 }
 
 .dropdown-header {
-    font-size: 11px;
+    font-size: 12px;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: #999;
-    padding: 10px 20px;
-    margin: 0;
+    letter-spacing: 2px;
+    color: #8b4513;
+    padding: 5px 15px;
+    margin: 5px 0;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    font-weight: 800;
+    border-bottom: 1px dashed rgba(139, 69, 19, 0.3);
 }
 
 .settings-dropdown a {
-    color: var(--black) !important;
-    padding: 12px 20px;
+    color: #4a332d !important;
+    padding: 10px 15px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     transition: all 0.2s ease;
+    border-radius: 4px;
 }
 
 .settings-dropdown a:hover {
-    background: #fff5f6;
-    color: var(--primary-red) !important;
-    padding-left: 25px;
+    background: rgba(74, 51, 45, 0.1);
+    color: #b30000 !important;
+    padding-left: 20px;
 }
 
 .divider {
@@ -1885,7 +1925,7 @@ body {
     position: absolute;
     top: 20px;
     right: 20px;
-    background: #FDB913;
+    background: #e2dfd8;
     color: var(--white);
     padding: 5px 15px;
     border-radius: 20px;

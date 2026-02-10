@@ -18,8 +18,33 @@
     display: flex;
     align-items: center;
     background: #000;
-    margin-bottom: 120px;
+}
 
+.hero-image-wrapper {
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
+}
+
+.hero-main-graphic {
+    max-width: 200px;
+    height: auto;
+    border-radius: 50%;
+}
+
+.fade-in {
+    animation: fadeIn 2s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes gradientAnimation {
@@ -48,6 +73,18 @@
     width: 100%;
     height: 100%;
     z-index: 0;
+}
+
+.hero-slider::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 20%, rgba(0, 0, 0, 0.8) 100%);
+    z-index: 2;
+    pointer-events: none;
 }
 
 .hero-slide {
@@ -211,13 +248,364 @@
     }
 }
 
+/* Divine Statues styling */
+.divine-statues {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+    overflow: hidden;
+}
+
+.statue-container {
+    position: absolute;
+    bottom: -100px;
+    height: 85vh;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    transition: all 1s ease-out;
+    filter: drop-shadow(0 0 30px rgba(253, 185, 19, 0.4));
+}
+
+.statue-left {
+    left: -80px;
+    animation: slideStatueLeft 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.statue-right {
+    right: -80px;
+    animation: slideStatueRight 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes slideStatueLeft {
+    from {
+        transform: translateX(-100%) translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideStatueRight {
+    from {
+        transform: translateX(100%) translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+    }
+}
+
+.statue-img {
+    height: 95%;
+    width: auto;
+    object-fit: contain;
+    animation: statueFloat 6s ease-in-out infinite 2s;
+}
+
+@keyframes statueFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+
+    50% {
+        transform: translateY(-30px) rotate(1deg);
+    }
+}
+
+.statue-aura {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.25) 0%, transparent 70%);
+    z-index: -1;
+    animation: auraPulse 4s ease-in-out infinite;
+}
+
+@keyframes auraPulse {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0.3;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.7;
+    }
+}
+
+@media (max-width: 1600px) {
+    .statue-container {
+        width: 380px;
+        height: 75vh;
+    }
+}
+
+@media (max-width: 1400px) {
+    .statue-container {
+        width: 320px;
+        height: 65vh;
+        bottom: -50px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .statue-container {
+        width: 250px;
+        height: 55vh;
+        bottom: -30px;
+        left: -40px;
+        right: -40px;
+    }
+}
+
+@media (max-width: 991px) {
+    .divine-statues {
+        display: none;
+    }
+}
+
+/* Sacred Decorations (Toran & Bells) */
+.sacred-decorations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.toran-decor-svg {
+    width: 100%;
+    height: 120px;
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.4));
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .toran-decor-svg {
+        height: 60px;
+    }
+}
+
+.hanging-bells {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10%;
+}
+
+.bell-wrapper {
+    position: relative;
+    height: 200px;
+    width: 60px;
+}
+
+.bell-1 {
+    margin-left: 5%;
+}
+
+.bell-2 {
+    margin-right: 5%;
+}
+
+.bell {
+    width: 100%;
+    height: auto;
+    transform-origin: top center;
+    animation: bellSwing 4s ease-in-out infinite;
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.5));
+}
+
+.bell-1 .bell {
+    animation-delay: 0s;
+}
+
+.bell-2 .bell {
+    animation-delay: 2s;
+}
+
+@keyframes bellSwing {
+
+    0%,
+    100% {
+        transform: rotate(10deg);
+    }
+
+    50% {
+        transform: rotate(-10deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .bell-wrapper {
+        width: 35px;
+        height: 120px;
+    }
+}
+
+/* ===================================
+   Hero Portal Mantap (Golden Arch)
+   =================================== */
+.hero-portal-mantap {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.divine-frame-container {
+    width: 600px;
+    height: 800px;
+    position: relative;
+    max-width: 90vw;
+    margin-top: -50px;
+}
+
+.golden-arch-frame {
+    width: 100%;
+    height: 100%;
+    background: url('https://png.pngtree.com/png-vector/20240314/ourmid/pngtree-ornate-golden-temple-arch-frame-png-image_11943603.png') no-repeat center;
+    background-size: contain;
+    position: relative;
+    filter: drop-shadow(0 0 30px rgba(253, 185, 19, 0.4));
+}
+
+.gold-rim-glow {
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    right: 15%;
+    bottom: 10%;
+    border-radius: 50% 50% 0 0;
+    box-shadow: 0 0 50px rgba(253, 185, 19, 0.3), inset 0 0 30px rgba(253, 185, 19, 0.2);
+    z-index: -1;
+    animation: goldenBreathe 4s ease-in-out infinite;
+}
+
+@keyframes goldenBreathe {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+.god-slider {
+    position: absolute;
+    top: 25%;
+    left: 20%;
+    width: 60%;
+    height: 55%;
+    z-index: 2;
+    pointer-events: auto;
+}
+
+.god-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.god-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+    animation: godFloat 5s ease-in-out infinite;
+}
+
+@keyframes godFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1.02);
+    }
+
+    50% {
+        transform: translateY(-20px) scale(1.05);
+    }
+}
+
+.divine-aura-small {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+    z-index: -1;
+    animation: auraPulse 3s ease-in-out infinite;
+}
+
+.hero-main-container {
+    position: relative;
+    z-index: 20;
+    pointer-events: none;
+    margin-top: 100px;
+}
+
+.hero-content {
+    pointer-events: auto;
+}
+
+@media (max-width: 768px) {
+    .divine-frame-container {
+        width: 320px;
+        height: 450px;
+        margin-top: 50px;
+    }
+
+    .god-slider {
+        top: 22%;
+    }
+
+    .hero-main-container {
+        margin-top: 50px;
+    }
+}
+
 .divine-entrance {
     position: absolute;
-    bottom: 50px;
-    /* Positioned at bottom of hero */
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 10;
+    z-index: 25;
     text-align: center;
     width: 100%;
     pointer-events: none;
@@ -378,18 +766,20 @@
 }
 
 .hero-content {
-    display: grid;
-    grid-template-columns: 4fr 1fr;
-    gap: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    text-align: center;
+    gap: 30px;
     position: relative;
-    z-index: 2;
+    z-index: 10;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 @media (max-width: 991px) {
     .hero-content {
-        grid-template-columns: 1fr;
-        text-align: center;
         gap: 30px;
     }
 
@@ -534,7 +924,8 @@
     position: absolute;
     width: 420px;
     height: 420px;
-    background: url('https://cdn-icons-png.flaticon.com/512/3241/3241151.png') no-repeat center/contain;
+    background: url('https://png.pngtree.com/png-vector/20240314/ourmid/pngtree-vintage-red-floral-wavy-border-pattern-for-traditional-decor-png-image_11943618.png') no-repeat center;
+    background-size: contain;
     opacity: 0.25;
     animation: rotateSlowReverse 45s linear infinite;
     filter: invert(1) brightness(2);
@@ -673,7 +1064,7 @@
    Pooja Services (Featured)
    =================================== */
 .pooja-services {
-    padding: var(--section-padding);
+    padding: 80px 0;
     background: url("https://tse3.mm.bing.net/th/id/OIP.EMgKnK1KuopAbS6dCYtubgHaE7?pid=Api&P=0&h=180") center/cover no-repeat;
     position: relative;
     background-color: #fff6d8;
@@ -746,16 +1137,48 @@
    Testimonials Cleanup
    =================================== */
 .testimonials {
-    background: #fff6d8 !important;
-    padding: var(--section-padding) !important;
+    background-color: #fff6d8 !important;
+    background-image: url('https://png.pngtree.com/png-clipart/20231120/original/pngtree-wedding-card-border-design-vector-png-image_13662204.png') !important;
+    background-size: 100% 100% !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    padding: 120px 80px !important;
+    position: relative;
+    border: none !important;
 }
 
 .testimonial-card {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
-    background: var(--accent-yellow);
-    padding: 60px 40px;
-    border-radius: 20px;
+    background: rgba(253, 185, 19, 0.9);
+    padding: 50px;
+    border-radius: 30px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--primary-red);
+}
+
+.authentic-divine {
+    padding: 80px 0 !important;
+    background: #fff6d8 !important;
+    background-image: url('https://png.pngtree.com/png-clipart/20231120/original/pngtree-wedding-card-border-design-vector-png-image_13662204.png') !important;
+    background-size: 100% 100% !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+
+.dds {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.dds img {
+    max-width: 60%;
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
+    border-radius: 15px;
 }
 
 .how-works {
@@ -909,10 +1332,7 @@
 }
 
 /* Authentic & Divine */
-.authentic-divine {
-    padding: 80px 20px;
-    background-color: #fff6d8;
-}
+/* Styles moved above to avoid duplication */
 
 .auth-grid {
     display: grid;
@@ -985,5 +1405,46 @@
     .testimonial-side-image {
         width: 100%;
         max-width: 400px;
+    }
+}
+
+/* Divine Floating Symbols */
+.divine-symbol-top {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: -60px;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.om-float {
+    width: 120px;
+    filter: drop-shadow(0 0 20px rgba(253, 185, 19, 0.8));
+    animation: omPulseFloat 4s ease-in-out infinite;
+}
+
+@keyframes omPulseFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+        filter: drop-shadow(0 0 20px rgba(253, 185, 19, 0.8));
+    }
+
+    50% {
+        transform: translateY(-20px) scale(1.1);
+        filter: drop-shadow(0 0 40px rgba(253, 185, 19, 1));
+    }
+}
+
+@media (max-width: 768px) {
+    .om-float {
+        width: 80px;
+    }
+
+    .divine-symbol-top {
+        margin-top: -40px;
     }
 }

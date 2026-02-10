@@ -12,4 +12,7 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('signup/', views.signup_view, name='signup'),
     path('cart/', views.cart, name='cart'),
+    path('purohit/login/', views.purohit_login, name='purohit_login'),
+    path('purohit/signup/', views.purohit_signup, name='purohit_signup'),
+    path('purohit/dashboard/', views.purohit_dashboard, name='purohit_dashboard'),
 ]

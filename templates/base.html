@@ -15,10 +15,13 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    {% block preloader_css %}{% endblock %}
     {% block extra_css %}{% endblock %}
 </head>
 
-<body>
+<body class="{% block body_class %}{% endblock %}">
+
+    {% block preloader %}{% endblock %}
 
     <!-- Navigation -->
     {% include 'includes/navbar.html' %}
@@ -29,6 +32,7 @@
         {% endblock %}
     </main>
 
+    {% include 'includes/premium_divider.html' %}
     <footer class="site-footer">
         {% include 'includes/footer.html' %}
     </footer>
@@ -144,7 +148,91 @@
                 updateCartCount();
             }
         });
+
     </script>
+    <!-- 15-Second Devotional Audio -->
+    <audio id="site-welcome-audio" preload="auto">
+        <source src="{% static 'videos/om-[hindugodsongs.in].mp3.mpeg' %}" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Audio Playback Logic - Ultra Robust
+        (function () {
+            const AUDIO_ID = 'site-welcome-audio';
+            const SESSION_KEY = 'welcome_audio_done';
+
+            function initAudio() {
+                // If already played in this tab session, NEVER play again
+                if (sessionStorage.getItem(SESSION_KEY)) {
+                    console.log("Audio skipped: Already played in this session tab.");
+                    return;
+                }
+
+                const audio = document.getElementById(AUDIO_ID);
+                if (!audio) return;
+
+                // Ensure audio is at start
+                audio.currentTime = 0;
+
+                let isPlayingSequence = false;
+
+                const startPlayback = () => {
+                    if (isPlayingSequence || sessionStorage.getItem(SESSION_KEY)) return;
+
+                    isPlayingSequence = true;
+
+                    audio.play().then(() => {
+                        console.log("Sequence started: 15s devotional music.");
+                        // Set flag IMMEDIATELY to prevent overlap or re-trigger
+                        sessionStorage.setItem(SESSION_KEY, 'true');
+
+                        // Robust 15s timer
+                        const timerId = setTimeout(() => {
+                            audio.pause();
+                            audio.currentTime = 0;
+                            console.log("Sequence completed: Audio stopped after 15s.");
+                            isPlayingSequence = false;
+                        }, 15000);
+
+                        // If audio ends prematurely for some reason, clear flag but don't retrigger
+                        audio.onended = () => {
+                            clearTimeout(timerId);
+                            isPlayingSequence = false;
+                            console.log("Audio ended naturally before 15s.");
+                        };
+
+                    }).catch(error => {
+                        isPlayingSequence = false;
+                        console.log("User interaction required for audio.");
+                    });
+                };
+
+                // Try playing on load (very likely blocked, but we try)
+                window.addEventListener('load', () => {
+                    setTimeout(startPlayback, 1500); // Wait for preloader/page load
+                });
+
+                // Listen for first interaction - standard way to bypass autoplay blocks
+                const triggerEvents = ['click', 'touchstart', 'mousedown', 'keydown'];
+                const triggerPlay = () => {
+                    startPlayback();
+                    // Clean up: remove all listeners after first execution
+                    triggerEvents.forEach(e => document.removeEventListener(e, triggerPlay));
+                };
+
+                triggerEvents.forEach(e => document.addEventListener(e, triggerPlay));
+            }
+
+            // Initialize safely
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initAudio);
+            } else {
+                initAudio();
+            }
+        })();
+    </script>
+
+    {% block preloader_script %}{% endblock %}
     <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="{% static 'js/cart.js' %}"></script>
 
