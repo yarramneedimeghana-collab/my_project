@@ -1,0 +1,135 @@
+<!-- ===================================== -->
+<!-- TESTIMONIALS - ADMIN EDITABLE -->
+<!-- Pure HTML Only - No Django Tags -->
+<!-- ===================================== -->
+
+<!-- Testimonials Section -->
+<section class="testimonials" style="height:600px; background: linear-gradient(to right, #FDB913, #E24028, #FDB913);">
+    <div class="container" style="height: 100%;">
+        <div class="testimonial-main-box" style="
+            background: linear-gradient(to right, #fdd46f, #f8f4f4, #ebc86f);
+            border-radius: 30px;
+            border: 2px solid #E24028;
+            height: 100%;
+            max-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        ">
+            <div class="section-header" style="margin-bottom: 30px;">
+                <h2 style="color: #E24028;">Client Testimonials</h2>
+            </div>
+
+            <!-- Swiper Container -->
+            <div class="swiper testimonial-slider" style="width: 100%; height: auto; overflow: hidden;">
+                <div class="swiper-wrapper">
+
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-slide-content"
+                            style="text-align: center; max-width: 800px; margin: 0 auto;">
+                            <div class="quote-icon" style="font-size: 60px; color: #E24028; opacity: 0.3;">"</div>
+                            <p class="testimonial-text"
+                                style="font-size: 20px; color: #333; line-height: 1.6; font-style: italic;">
+                                Outstanding service and amazing results! The pujas performed were authentic and brought
+                                peace to our family. Highly recommended for everyone looking for divine blessings.
+                            </p>
+                            <div class="quote-icon closing" style="font-size: 60px; color: #E24028; opacity: 0.3;">"
+                            </div>
+
+                            <div class="testimonial-author"
+                                style="margin-top: 20px; display: flex; flex-direction: column; align-items: center;">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80"
+                                    alt="John Smith"
+                                    style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #E24028; margin-bottom: 10px;">
+                                <h4 style="color: #E24028; margin: 0;">Rajesh Kumar</h4>
+                                <p style="color: #666; margin: 0;">Business Owner, Hyderabad</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-slide-content"
+                            style="text-align: center; max-width: 800px; margin: 0 auto;">
+                            <div class="quote-icon" style="font-size: 60px; color: #E24028; opacity: 0.3;">"</div>
+                            <p class="testimonial-text"
+                                style="font-size: 20px; color: #333; line-height: 1.6; font-style: italic;">
+                                I was looking for a specific Homam and found this platform. The priests were very
+                                knowledgeable and the entire process was seamless and spiritual.
+                            </p>
+                            <div class="quote-icon closing" style="font-size: 60px; color: #E24028; opacity: 0.3;">"
+                            </div>
+
+                            <div class="testimonial-author"
+                                style="margin-top: 20px; display: flex; flex-direction: column; align-items: center;">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80"
+                                    alt="Lakshmi"
+                                    style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #E24028; margin-bottom: 10px;">
+                                <h4 style="color: #E24028; margin: 0;">Lakshmi Priya</h4>
+                                <p style="color: #666; margin: 0;">Software Engineer, Bangalore</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-slide-content"
+                            style="text-align: center; max-width: 800px; margin: 0 auto;">
+                            <div class="quote-icon" style="font-size: 60px; color: #E24028; opacity: 0.3;">"</div>
+                            <p class="testimonial-text"
+                                style="font-size: 20px; color: #333; line-height: 1.6; font-style: italic;">
+                                A truly divine experience. The booking was easy and the Live Darshan feature made us
+                                feel like we were present in the temple. Thank you!
+                            </p>
+                            <div class="quote-icon closing" style="font-size: 60px; color: #E24028; opacity: 0.3;">"
+                            </div>
+
+                            <div class="testimonial-author"
+                                style="margin-top: 20px; display: flex; flex-direction: column; align-items: center;">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80"
+                                    alt="Amit"
+                                    style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #E24028; margin-bottom: 10px;">
+                                <h4 style="color: #E24028; margin: 0;">Amit Sharma</h4>
+                                <p style="color: #666; margin: 0;">Bank Manager, Delhi</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Pagination -->
+                <div class="swiper-pagination testimonial-pagination" style="position: absolute; bottom: 0;"></div>
+            </div>
+
+            <!-- Styles for Swiper -->
+            <style>
+                .testimonial-slider .swiper-pagination-bullet-active {
+                    background-color: #E24028;
+                }
+            </style>
+        </div>
+    </div>
+
+    <!-- Initialize Swiper -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var swiper = new Swiper(".testimonial-slider", {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                loop: true,
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".testimonial-pagination",
+                    clickable: true,
+                },
+            });
+        });
+    </script>
+</section>

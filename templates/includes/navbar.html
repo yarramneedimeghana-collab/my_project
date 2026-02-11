@@ -1,5 +1,5 @@
 {% load static %}
-<nav class="navbar" style="background-color: #b30000;">
+<nav class="navbar" style="background-color:linear-gradient(to right,#110101,#661414); position: relative;">
     <div class="container">
         <div class="nav-wrapper">
             <div class="logo">
@@ -26,32 +26,13 @@
                     <li><a href="{% url 'contact' %}"
                             class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a>
                     </li>
+                    <li><a href="{% url 'contact' %}"
+                            class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Register</a>
+                    </li>
                 </ul>
             </div>
+
+
+            <!-- Decorative Bottom Border -->
            
-<div class="signin-container">
-    <h1 class="page-title">Choose Your Role</h1>
-    <p class="subtitle">Continue to access puja services</p>
-
-    <div class="card-wrapper">
-
-        <!-- Devotee Card -->
-        <div class="signin-card">
-            <i class="fas fa-praying-hands card-icon"></i>
-            <h2>Devotee</h2>
-            <p>Book pujas & spiritual services</p>
-
-            <a href="{% url 'login' %}" class="btn primary">Sign In</a>
-            <a href="{% url 'signup' %}" class="btn secondary">Sign Up</a>
-        </div>
-
-        <!-- Purohit Card -->
-        <div class="signin-card">
-            <i class="fas fa-om card-icon"></i>
-            <h2>Purohit</h2>
-            <p>Offer puja & ritual services</p>
-
-            <a href="{% url 'purohit_login' %}" class="btn primary">Sign In</a>
-            <a href="{% url 'purohit_signup' %}" class="btn secondary">Sign Up</a>
-        </div>
-    </nav>
+</nav>

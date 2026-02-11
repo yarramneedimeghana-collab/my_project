@@ -1,9 +1,28 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% comment %}
+=========================================
+HOME PAGE - Django Template Wrapper
+Developer Zone Only
+=========================================
+This file contains ONLY Django logic and includes.
+All editable content is in templates/cms/home/
+
+Admin-editable files:
+- cms/home/hero_content.html
+- cms/home/services_grid.html
+- cms/home/stats_section.html
+- cms/home/how_it_works.html
+- cms/home/authentic_divine.html
+- cms/home/videos_section.html
+- cms/home/testimonials.html
+{% endcomment %}
+
 {% block body_class %}preloader-active{% endblock %}
 
 {% block preloader_css %}
+
 <link rel="stylesheet" href="{% static 'css/preloader.css' %}">
 {% endblock %}
 
@@ -12,71 +31,31 @@
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 <link rel="stylesheet" href="{% static 'css/videos.css' %}">
 {% endblock %}
-
+<!--
 {% block preloader %}
-<div id="preloader" class="preloader-wrapper">
-    <div class="preloader-rays"></div>
-    <div class="preloader-content">
-        <div class="mandala-spinner">
-            <svg viewBox="0 0 500 500" class="mantra-svg">
-                <defs>
-                    <path id="preloaderMantraCircle"
-                        d="M 250, 250 m -200, 0 a 200, 200 0 1, 1 400, 0 a 200, 200 0 1, 1 -400, 0" />
-                </defs>
-                <text class="mantra-text">
-                    <textPath href="#preloaderMantraCircle" startOffset="0">
-                        ॐ నమః శివాయ • ॐ నమో నారాయణాయ • ॐ గం గణపతయే నమః • ॐ మహాలక్ష్మ్యై నమః • ॐ సరస్వత్యై నమః •
-                    </textPath>
-                </text>
-            </svg>
-            <div class="om-symbol">ॐ</div>
-        </div>
-        <div class="loading-text">Divine Blessings Loading</div>
-        <div class="loading-dots">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
-    </div>
-</div>
 {% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
 {% include 'includes/hero.html' %}
 
-{% include 'includes/premium_divider.html' %}
-
 <!-- Categories & Stats Section -->
-{% include 'content/categories_stats_content.html' %}
-
-{% include 'includes/premium_divider.html' %}
+{% include 'cms/home/stats_section.html' %}
 
 <!-- Featured Pooja Preview -->
-{% include 'content/services_content.html' %}
-
-{% include 'includes/premium_divider.html' %}
+{% include 'cms/home/services_grid.html' %}
 
 <!-- About Us Section -->
-{% include 'content/how_works_content.html' %}
+{% include 'cms/home/how_it_works.html' %}
 
-{% include 'includes/premium_divider.html' %}
 
-<!-- Authentic & Divine Section -->
-{% include 'content/authentic_divine_content.html' %}
-
-{% include 'includes/premium_divider.html' %}
 
 <!-- Temples Section -->
-{% include 'content/videos_section.html' %}
-
-{% include 'includes/premium_divider.html' %}
+{% include 'cms/home/videos_section.html' %}
 
 <!-- Testimonials Section -->
-{% include 'content/testimonials_content.html' %}
+{% include 'cms/home/testimonials.html' %}
 
-<!-- Decorative Bottom Border-->
-{% include 'includes/premium_divider.html' %}
 {% endblock %}
 
 {% block scripts %}
@@ -85,19 +64,4 @@
 {% endblock %}
 
 {% block preloader_script %}
-<script>
-    // Preloader Logic
-    window.addEventListener('load', function () {
-        const preloader = document.getElementById('preloader');
-        const body = document.body;
-
-        // Give a small delay for a smooth transition
-        setTimeout(() => {
-            if (preloader) {
-                preloader.classList.add('loaded');
-                body.classList.remove('preloader-active');
-            }
-        }, 1500); // 1.5 seconds delay to show the beautiful animation
-    });
-</script>
 {% endblock %}

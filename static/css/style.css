@@ -1895,7 +1895,7 @@ body {
     flex-direction: column;
     position: relative;
 
-    height: 350px;
+    height: 200px;
     cursor: pointer;
 }
 
@@ -1991,7 +1991,7 @@ body {
 }
 
 .pooja-content {
-    background-color: #b30000;
+    background-color: #fcdd7f;
     padding: 25px;
     flex: 1;
     display: flex;
